@@ -1,1 +1,721 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyRestaurant POS</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#0f0f0f;
+    --card:#171717;
+    --card2:#1d1d1d;
+    --accent:#d6a437;
+    --accent2:#f0c15c;
+    --text:#ffffff;
+    --muted:#a7a7a7;
+    --border:rgba(255,255,255,.06);
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+    radial-gradient(circle at top right, rgba(214,164,55,.15), transparent 20%),
+    radial-gradient(circle at bottom left, rgba(214,164,55,.08), transparent 20%),
+    var(--bg);
+
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+}
+
+.ar{
+    direction:rtl;
+    font-family:'Cairo',sans-serif;
+}
+
+.container{
+    width:92%;
+    max-width:1250px;
+    margin:auto;
+}
+
+header{
+    padding:28px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.logo-box{
+    width:64px;
+    height:64px;
+    border-radius:22px;
+    background:linear-gradient(135deg,var(--accent2),#8c6314);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+    box-shadow:0 20px 50px rgba(214,164,55,.25);
+}
+
+.logo h1{
+    font-size:1.8rem;
+    font-weight:900;
+}
+
+.logo p{
+    color:var(--muted);
+    margin-top:4px;
+}
+
+.lang-switch{
+    display:flex;
+    gap:10px;
+}
+
+.lang-switch button{
+    border:none;
+    background:var(--card);
+    color:white;
+    padding:11px 18px;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:700;
+    transition:.2s;
+    border:1px solid var(--border);
+}
+
+.lang-switch button:hover{
+    background:var(--accent);
+    color:black;
+}
+
+.hero{
+    padding:80px 0 120px;
+    text-align:center;
+}
+
+.badge{
+    display:inline-block;
+    padding:10px 18px;
+    border-radius:999px;
+    background:rgba(214,164,55,.12);
+    border:1px solid rgba(214,164,55,.2);
+    color:var(--accent2);
+    font-weight:700;
+    margin-bottom:28px;
+}
+
+.hero h2{
+    font-size:5rem;
+    line-height:1.05;
+    max-width:1000px;
+    margin:auto;
+    font-weight:900;
+    margin-bottom:28px;
+}
+
+.highlight{
+    color:var(--accent2);
+}
+
+.hero p{
+    max-width:850px;
+    margin:auto;
+    color:var(--muted);
+    font-size:1.15rem;
+    line-height:1.9;
+    margin-bottom:45px;
+}
+
+.actions{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.download-btn{
+    background:linear-gradient(135deg,var(--accent2),var(--accent));
+    color:black;
+    text-decoration:none;
+    padding:19px 38px;
+    border-radius:18px;
+    font-weight:900;
+    font-size:1rem;
+    transition:.25s;
+    box-shadow:0 20px 60px rgba(214,164,55,.25);
+}
+
+.download-btn:hover{
+    transform:translateY(-4px);
+}
+
+.contact-btn{
+    background:var(--card);
+    border:1px solid var(--border);
+    color:white;
+    text-decoration:none;
+    padding:19px 30px;
+    border-radius:18px;
+    font-weight:800;
+}
+
+.contact-btn:hover{
+    border-color:rgba(214,164,55,.3);
+}
+
+.stats{
+    margin-top:90px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:24px;
+}
+
+.stat{
+    background:var(--card);
+    border-radius:26px;
+    padding:38px;
+    border:1px solid var(--border);
+}
+
+.stat h3{
+    font-size:2.2rem;
+    color:var(--accent2);
+    margin-bottom:10px;
+}
+
+.stat p{
+    color:var(--muted);
+    line-height:1.7;
+}
+
+.section{
+    padding-bottom:110px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.section-title h3{
+    font-size:3rem;
+    margin-bottom:16px;
+}
+
+.section-title p{
+    color:var(--muted);
+    max-width:800px;
+    margin:auto;
+    line-height:1.8;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:24px;
+}
+
+.card{
+    background:linear-gradient(180deg,#1a1a1a,#141414);
+    border-radius:28px;
+    padding:34px;
+    border:1px solid var(--border);
+    transition:.25s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(214,164,55,.3);
+}
+
+.icon{
+    width:60px;
+    height:60px;
+    border-radius:18px;
+    background:rgba(214,164,55,.12);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    margin-bottom:24px;
+}
+
+.card h4{
+    font-size:1.3rem;
+    margin-bottom:14px;
+}
+
+.card p{
+    color:var(--muted);
+    line-height:1.8;
+}
+
+.list{
+    display:grid;
+    gap:18px;
+    margin-top:35px;
+}
+
+.list-item{
+    background:var(--card2);
+    border:1px solid var(--border);
+    padding:24px;
+    border-radius:20px;
+}
+
+.list-item h4{
+    margin-bottom:10px;
+    color:var(--accent2);
+}
+
+.list-item p{
+    color:var(--muted);
+    line-height:1.8;
+}
+
+.tech{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:30px;
+    justify-content:center;
+}
+
+.tech span{
+    padding:14px 20px;
+    border-radius:999px;
+    background:var(--card);
+    border:1px solid var(--border);
+    font-weight:700;
+}
+
+footer{
+    border-top:1px solid var(--border);
+    padding:35px 0;
+    text-align:center;
+    color:var(--muted);
+}
+
+footer a{
+    color:var(--accent2);
+    text-decoration:none;
+    font-weight:800;
+}
+
+@media(max-width:900px){
+
+.hero h2{
+    font-size:3rem;
+}
+
+header{
+    flex-direction:column;
+    gap:25px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+
+<div class="logo">
+
+<div class="logo-box">🍽</div>
+
+<div>
+<h1>MyRestaurant</h1>
+<p id="logoSub">Restaurant POS System</p>
+</div>
+
+</div>
+
+<div class="lang-switch">
+<button onclick="setLang('en')">English</button>
+<button onclick="setLang('fr')">Français</button>
+<button onclick="setLang('ar')">العربية</button>
+</div>
+
+</header>
+
+<section class="hero">
+
+<div class="badge" id="badge">
+Modern Android Restaurant POS
+</div>
+
+<h2 id="title">
+Complete <span class="highlight">Restaurant Management</span><br>
+Inside One Android App
+</h2>
+
+<p id="heroDesc">
+MyRestaurant is a modern restaurant POS application designed for fast service environments. Manage orders, organize menus, print receipts through Bluetooth thermal printers, track profits, monitor sales and run your restaurant efficiently from a single Android device.
+</p>
+
+<div class="actions">
+
+<a class="download-btn"
+href="https://github.com/issam37amara-collab/MyRestaurant/releases/download/Release/MyRestaurant.apk">
+⬇ Download APK
+</a>
+
+<a class="contact-btn" href="tel:0562407034">
+📞 0562407034
+</a>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<h3>⚡ Fast</h3>
+<p id="s1">
+Optimized for fast paced restaurant environments with large touch friendly controls.
+</p>
+</div>
+
+<div class="stat">
+<h3>🖨 Printing</h3>
+<p id="s2">
+Bluetooth thermal printing support for instant kitchen and customer receipts.
+</p>
+</div>
+
+<div class="stat">
+<h3>📊 Analytics</h3>
+<p id="s3">
+Track profits, sales performance and business activity in real time.
+</p>
+</div>
+
+<div class="stat">
+<h3>📱 Android</h3>
+<p id="s4">
+Built for Android tablets and phones with a clean modern interface.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="section-title">
+<h3 id="featureTitle">Main Features</h3>
+<p id="featureSub">
+Everything needed to manage a restaurant professionally without bloated unnecessary complexity.
+</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">🧾</div>
+<h4 id="f1t">Order Management</h4>
+<p id="f1d">
+Quickly add customer orders, manage items and process restaurant operations efficiently with a simple workflow.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🍔</div>
+<h4 id="f2t">Menu System</h4>
+<p id="f2d">
+Create categories, organize products, manage pricing and customize your restaurant menu directly from the app.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🖨</div>
+<h4 id="f3t">Bluetooth Printing</h4>
+<p id="f3d">
+Compatible with compact Bluetooth thermal printers for fast receipt and kitchen ticket printing.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">📈</div>
+<h4 id="f4t">Sales Analytics</h4>
+<p id="f4d">
+Monitor profits, best selling products and restaurant performance with built in analytics tools.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">⚙</div>
+<h4 id="f5t">Restaurant Settings</h4>
+<p id="f5d">
+Configure menu categories, restaurant information and operational settings easily.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🚀</div>
+<h4 id="f6t">Modern Interface</h4>
+<p id="f6d">
+Large buttons, smooth navigation and clean visuals designed specifically for restaurant staff.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="section-title">
+<h3 id="whyTitle">Why Use MyRestaurant?</h3>
+<p id="whySub">
+Built for simplicity, speed and real world restaurant usage.
+</p>
+</div>
+
+<div class="list">
+
+<div class="list-item">
+<h4 id="w1t">Fast Workflow</h4>
+<p id="w1d">
+The interface is optimized for quick access and minimal taps so restaurant staff can work faster during busy hours.
+</p>
+</div>
+
+<div class="list-item">
+<h4 id="w2t">Touch Friendly Design</h4>
+<p id="w2d">
+Large buttons and organized layouts make the app easy to use on tablets and mobile devices.
+</p>
+</div>
+
+<div class="list-item">
+<h4 id="w3t">Offline Friendly</h4>
+<p id="w3d">
+Designed to work reliably in restaurant environments without depending heavily on cloud infrastructure.
+</p>
+</div>
+
+<div class="list-item">
+<h4 id="w4t">Modern Android Experience</h4>
+<p id="w4d">
+Clean dark interface inspired by modern Material Design aesthetics.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<div class="section-title">
+<h3 id="techTitle">Perfect For</h3>
+<p id="techSub">
+Suitable for multiple food service businesses.
+</p>
+</div>
+
+<div class="tech">
+<span id="t1">Restaurants</span>
+<span id="t2">Fast Food</span>
+<span id="t3">Coffee Shops</span>
+<span id="t4">Snack Bars</span>
+<span id="t5">Small Businesses</span>
+<span id="t6">Food Trucks</span>
+</div>
+
+</section>
+
+<footer>
+<p id="footerText">
+Contact:
+<a href="tel:0562407034">0562407034</a>
+</p>
+</footer>
+
+</div>
+
+<script>
+
+const translations = {
+
+en:{
+logoSub:"Restaurant POS System",
+badge:"Modern Android Restaurant POS",
+title:`Complete <span class="highlight">Restaurant Management</span><br>Inside One Android App`,
+heroDesc:"MyRestaurant is a modern restaurant POS application designed for fast service environments. Manage orders, organize menus, print receipts through Bluetooth thermal printers, track profits, monitor sales and run your restaurant efficiently from a single Android device.",
+s1:"Optimized for fast paced restaurant environments with large touch friendly controls.",
+s2:"Bluetooth thermal printing support for instant kitchen and customer receipts.",
+s3:"Track profits, sales performance and business activity in real time.",
+s4:"Built for Android tablets and phones with a clean modern interface.",
+featureTitle:"Main Features",
+featureSub:"Everything needed to manage a restaurant professionally without bloated unnecessary complexity.",
+f1t:"Order Management",
+f1d:"Quickly add customer orders, manage items and process restaurant operations efficiently with a simple workflow.",
+f2t:"Menu System",
+f2d:"Create categories, organize products, manage pricing and customize your restaurant menu directly from the app.",
+f3t:"Bluetooth Printing",
+f3d:"Compatible with compact Bluetooth thermal printers for fast receipt and kitchen ticket printing.",
+f4t:"Sales Analytics",
+f4d:"Monitor profits, best selling products and restaurant performance with built in analytics tools.",
+f5t:"Restaurant Settings",
+f5d:"Configure menu categories, restaurant information and operational settings easily.",
+f6t:"Modern Interface",
+f6d:"Large buttons, smooth navigation and clean visuals designed specifically for restaurant staff.",
+whyTitle:"Why Use MyRestaurant?",
+whySub:"Built for simplicity, speed and real world restaurant usage.",
+w1t:"Fast Workflow",
+w1d:"The interface is optimized for quick access and minimal taps so restaurant staff can work faster during busy hours.",
+w2t:"Touch Friendly Design",
+w2d:"Large buttons and organized layouts make the app easy to use on tablets and mobile devices.",
+w3t:"Offline Friendly",
+w3d:"Designed to work reliably in restaurant environments without depending heavily on cloud infrastructure.",
+w4t:"Modern Android Experience",
+w4d:"Clean dark interface inspired by modern Material Design aesthetics.",
+techTitle:"Perfect For",
+techSub:"Suitable for multiple food service businesses.",
+t1:"Restaurants",
+t2:"Fast Food",
+t3:"Coffee Shops",
+t4:"Snack Bars",
+t5:"Small Businesses",
+t6:"Food Trucks",
+footerText:`Contact: <a href="tel:0562407034">0562407034</a>`
+},
+
+fr:{
+logoSub:"Système POS Restaurant",
+badge:"POS Restaurant Android Moderne",
+title:`Gestion <span class="highlight">Complète De Restaurant</span><br>Dans Une Seule Application`,
+heroDesc:"MyRestaurant est une application POS moderne conçue pour les restaurants et services rapides. Gérez les commandes, les menus, l’impression Bluetooth, les profits et les ventes depuis un seul appareil Android.",
+s1:"Optimisé pour les environnements rapides avec une interface tactile efficace.",
+s2:"Support des imprimantes thermiques Bluetooth pour tickets et reçus.",
+s3:"Suivi des profits, ventes et activité du restaurant en temps réel.",
+s4:"Conçu pour téléphones et tablettes Android avec une interface moderne.",
+featureTitle:"Fonctionnalités Principales",
+featureSub:"Tout ce qu’il faut pour gérer un restaurant sans complexité inutile.",
+f1t:"Gestion Des Commandes",
+f1d:"Ajoutez et gérez rapidement les commandes clients avec un workflow simple.",
+f2t:"Système De Menu",
+f2d:"Créez des catégories, organisez les produits et gérez les prix facilement.",
+f3t:"Impression Bluetooth",
+f3d:"Compatible avec les imprimantes thermiques Bluetooth compactes.",
+f4t:"Statistiques Des Ventes",
+f4d:"Analyse des profits et des meilleures ventes directement dans l’application.",
+f5t:"Paramètres Restaurant",
+f5d:"Configuration facile des catégories et paramètres du restaurant.",
+f6t:"Interface Moderne",
+f6d:"Grandes commandes tactiles et navigation fluide.",
+whyTitle:"Pourquoi Utiliser MyRestaurant ?",
+whySub:"Conçu pour la simplicité et la rapidité.",
+w1t:"Workflow Rapide",
+w1d:"Optimisé pour réduire les manipulations et accélérer le service.",
+w2t:"Design Tactile",
+w2d:"Interface adaptée aux tablettes et appareils mobiles.",
+w3t:"Compatible Hors Ligne",
+w3d:"Fonctionne efficacement même avec une connexion limitée.",
+w4t:"Expérience Android Moderne",
+w4d:"Interface sombre inspirée du Material Design moderne.",
+techTitle:"Parfait Pour",
+techSub:"Compatible avec plusieurs types de commerces alimentaires.",
+t1:"Restaurants",
+t2:"Fast Food",
+t3:"Cafés",
+t4:"Snack Bars",
+t5:"Petites Entreprises",
+t6:"Food Trucks",
+footerText:`Contact : <a href="tel:0562407034">0562407034</a>`
+},
+
+ar:{
+logoSub:"نظام نقاط بيع للمطاعم",
+badge:"نظام مطاعم أندرويد حديث",
+title:`إدارة <span class="highlight">كاملة للمطاعم</span><br>داخل تطبيق واحد`,
+heroDesc:"MyRestaurant هو تطبيق حديث لإدارة المطاعم مصمم لبيئات العمل السريعة. إدارة الطلبات والقوائم والطباعة عبر البلوتوث والأرباح والمبيعات من جهاز أندرويد واحد.",
+s1:"مصمم للمطاعم السريعة مع واجهة لمس كبيرة وسهلة.",
+s2:"دعم الطابعات الحرارية عبر البلوتوث لطباعة الفواتير مباشرة.",
+s3:"متابعة الأرباح والمبيعات ونشاط المطعم لحظياً.",
+s4:"مصمم للهواتف والأجهزة اللوحية بنظام أندرويد.",
+featureTitle:"المميزات الرئيسية",
+featureSub:"كل ما يحتاجه المطعم بدون تعقيد غير ضروري.",
+f1t:"إدارة الطلبات",
+f1d:"إضافة وإدارة الطلبات بسرعة عبر نظام عمل بسيط وسلس.",
+f2t:"نظام القوائم",
+f2d:"إنشاء الأصناف وتنظيم المنتجات وإدارة الأسعار بسهولة.",
+f3t:"الطباعة بالبلوتوث",
+f3d:"متوافق مع الطابعات الحرارية الصغيرة عبر البلوتوث.",
+f4t:"إحصائيات المبيعات",
+f4d:"متابعة الأرباح والمنتجات الأكثر مبيعاً داخل التطبيق.",
+f5t:"إعدادات المطعم",
+f5d:"إدارة التصنيفات ومعلومات المطعم بسهولة.",
+f6t:"واجهة حديثة",
+f6d:"واجهة سلسة بأزرار كبيرة مناسبة لبيئة المطاعم.",
+whyTitle:"لماذا MyRestaurant ؟",
+whySub:"مصمم للسرعة والبساطة والاستخدام الواقعي.",
+w1t:"سرعة العمل",
+w1d:"تقليل عدد الخطوات لتسريع الخدمة داخل المطعم.",
+w2t:"تصميم مناسب للمس",
+w2d:"واجهة مريحة للأجهزة اللوحية والهواتف.",
+w3t:"يدعم العمل بدون إنترنت",
+w3d:"مصمم ليعمل بثبات داخل بيئات المطاعم.",
+w4t:"تجربة أندرويد حديثة",
+w4d:"واجهة داكنة مستوحاة من تصميم Material الحديث.",
+techTitle:"مثالي لـ",
+techSub:"مناسب لمختلف المشاريع الغذائية.",
+t1:"المطاعم",
+t2:"الوجبات السريعة",
+t3:"المقاهي",
+t4:"محلات السناك",
+t5:"المشاريع الصغيرة",
+t6:"عربات الطعام",
+footerText:`للتواصل: <a href="tel:0562407034">0562407034</a>`
+}
+
+};
+
+function setLang(lang){
+
+document.body.classList.remove('ar');
+
+if(lang === 'ar'){
+document.body.classList.add('ar');
+}
+
+for(const key in translations[lang]){
+document.getElementById(key).innerHTML = translations[lang][key];
+}
+
+document.documentElement.lang = lang;
+
+}
+
+</script>
+
+</body>
+</html>
